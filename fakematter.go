@@ -98,15 +98,13 @@ func c2Handler(w http.ResponseWriter, r *http.Request) {
 		// some useful meta data of the request
 		var mData Meta
 
-		if jsonFlag {
-			mData.TimeStamp = timeS
-			mData.URI = r.RequestURI
-			mData.Host = r.Host
-			mData.Remote = r.RemoteAddr
-			mData.UserAgent = r.UserAgent()
-			mData.ContentLength = int(r.ContentLength)
-			mData.ContentType = r.Header.Get("Content-Type")
-		}
+		mData.TimeStamp = timeS
+		mData.URI = r.RequestURI
+		mData.Host = r.Host
+		mData.Remote = r.RemoteAddr
+		mData.UserAgent = r.UserAgent()
+		mData.ContentLength = int(r.ContentLength)
+		mData.ContentType = r.Header.Get("Content-Type")
 
 		w1 := tabwriter.NewWriter(os.Stdout, 1, 1, 1, ' ', 0)
 		fmt.Fprintln(w1, "URI: \t", mData.URI)
